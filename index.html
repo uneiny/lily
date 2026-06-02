@@ -769,6 +769,135 @@
       line-height: 1.6;
     }
 
+
+    .demo-card {
+      display: grid;
+      grid-template-columns: minmax(0, 1.08fr) minmax(320px, 0.92fr);
+      gap: 24px;
+      align-items: stretch;
+      overflow: hidden;
+      padding: 0;
+    }
+
+    .demo-copy {
+      padding: 34px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 430px;
+    }
+
+    .demo-copy h3 {
+      margin: 0 0 16px;
+      font-size: clamp(28px, 4vw, 48px);
+      line-height: 1.02;
+      letter-spacing: -0.075em;
+    }
+
+    .demo-copy p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.78;
+      word-break: keep-all;
+    }
+
+    .demo-points {
+      display: grid;
+      gap: 10px;
+      margin-top: 24px;
+    }
+
+    .demo-point {
+      display: grid;
+      grid-template-columns: 36px 1fr;
+      gap: 12px;
+      align-items: start;
+      padding: 14px;
+      border-radius: 20px;
+      background: var(--paper-2);
+      border: 1px solid rgba(23, 23, 23, 0.06);
+    }
+
+    .demo-point b {
+      display: grid;
+      place-items: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--ink);
+      color: var(--paper);
+      font-size: 12px;
+      letter-spacing: 0.04em;
+    }
+
+    .demo-point strong {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 15px;
+      letter-spacing: -0.035em;
+    }
+
+    .demo-point span {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.55;
+      word-break: keep-all;
+    }
+
+    .video-shell {
+      position: relative;
+      min-height: 430px;
+      padding: 22px;
+      border-left: 1px solid rgba(23, 23, 23, 0.08);
+      background:
+        radial-gradient(circle at 82% 10%, rgba(246, 214, 107, 0.24), transparent 32%),
+        linear-gradient(135deg, #18241f, #244935);
+    }
+
+    .video-frame {
+      position: relative;
+      height: 100%;
+      min-height: 386px;
+      border-radius: 28px;
+      overflow: hidden;
+      background: #111;
+      border: 1px solid rgba(255, 253, 248, 0.16);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.22);
+    }
+
+    .video-frame video {
+      display: block;
+      width: 100%;
+      height: 100%;
+      min-height: 386px;
+      object-fit: cover;
+      background: #111;
+    }
+
+    .video-caption {
+      position: absolute;
+      left: 20px;
+      right: 20px;
+      bottom: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px 14px;
+      border-radius: 999px;
+      background: rgba(23, 23, 23, 0.72);
+      color: var(--paper);
+      backdrop-filter: blur(12px);
+      font-size: 12px;
+      font-weight: 850;
+      letter-spacing: -0.01em;
+      pointer-events: none;
+    }
+
+    .video-caption span:last-child {
+      color: rgba(255, 253, 248, 0.68);
+    }
+
     .deploy {
       display: grid;
       grid-template-columns: 1fr auto;
@@ -819,7 +948,8 @@
 
       .grid,
       .qa-flow,
-      .tool-grid {
+      .tool-grid,
+      .demo-card {
         grid-template-columns: 1fr;
       }
 
@@ -861,6 +991,17 @@
         display: block;
         margin-top: 6px;
       }
+
+      .demo-copy,
+      .video-shell {
+        min-height: auto;
+      }
+
+      .video-shell {
+        border-left: 0;
+        border-top: 1px solid rgba(23, 23, 23, 0.08);
+      }
+
     }
 
     @media (max-width: 760px) {
@@ -924,6 +1065,8 @@
       .index-card,
       .status-card,
       .bug-card,
+      .demo-copy,
+      .video-shell,
       .deploy {
         padding: 24px;
         border-radius: 26px;
@@ -931,6 +1074,21 @@
 
       .career-item {
         grid-template-columns: 1fr;
+      }
+
+
+
+      .video-frame,
+      .video-frame video {
+        min-height: 300px;
+      }
+
+      .video-caption {
+        position: static;
+        margin-top: 12px;
+        border-radius: 18px;
+        flex-direction: column;
+        align-items: flex-start;
       }
 
       .deploy {
@@ -952,6 +1110,7 @@
         <a href="#cases">Test Cases</a>
         <a href="#bugs">Bug Reports</a>
         <a href="#tools">Tools</a>
+        <a href="#demo">Demo</a>
       </nav>
     </header>
 
@@ -999,6 +1158,7 @@
             <div class="index-item">Career Description <span>02</span></div>
             <div class="index-item">Test Case Samples <span>03</span></div>
             <div class="index-item">Bug Report Samples <span>04</span></div>
+            <div class="index-item">Codex Demo Video <span>05</span></div>
           </div>
         </article>
 
@@ -1016,8 +1176,8 @@
             <span>Scenario Based</span>
           </div>
           <div class="metric">
-            <strong>Web</strong>
-            <span>atoms.dev Target</span>
+            <strong>11s</strong>
+            <span>Codex Demo</span>
           </div>
         </article>
       </aside>
@@ -1304,6 +1464,69 @@
           <div class="tool-card">
             <strong>Codex</strong>
             <p>오류 분석 보조, 코드 수정 요청, 테스트 관점 정리</p>
+          </div>
+        </div>
+      </article>
+    </section>
+
+
+
+    <section id="demo">
+      <div class="section-head">
+        <div>
+          <span class="section-num">06 · CODEX DEMO</span>
+          <h2>Codex를 활용해 구현한 결과를 영상으로 보여줍니다.</h2>
+        </div>
+        <p>
+          SW 교육 과정에서 Codex를 활용해 제작한 채용공고 수집 프로그램입니다. 페이지를 이동하지 않고 포트폴리오 안에서 바로 재생할 수 있도록 데모 영상을 삽입했습니다.
+        </p>
+      </div>
+
+      <article class="card span-12 demo-card">
+        <div class="demo-copy">
+          <div>
+            <div class="label">AI-Assisted Development Evidence</div>
+            <h3>잡아채용<br />채용공고 수집 프로그램</h3>
+            <p>
+              공공기관·지자체 채용공고를 수집하고 결과를 확인하는 웹 기반 프로그램입니다. Codex를 활용해 기능 구현, 오류 수정 요청,
+              수집 결과 검증 관점을 정리하며 SW 테스트 포트폴리오 산출물로 발전시켰습니다.
+            </p>
+            <div class="demo-points">
+              <div class="demo-point">
+                <b>01</b>
+                <div>
+                  <strong>Codex 활용 능력</strong>
+                  <span>요구사항을 프롬프트로 구체화하고, 코드 수정 방향과 오류 원인을 단계적으로 검토했습니다.</span>
+                </div>
+              </div>
+              <div class="demo-point">
+                <b>02</b>
+                <div>
+                  <strong>테스트 관점 적용</strong>
+                  <span>수집 실패, 필터 재조회, 대기시간, 결과 누락 등 실제 결함을 테스트케이스와 버그 리포트로 연결했습니다.</span>
+                </div>
+              </div>
+              <div class="demo-point">
+                <b>03</b>
+                <div>
+                  <strong>포트폴리오 증거 자료</strong>
+                  <span>단순 도구 사용 경험이 아니라, AI 도구를 활용해 작동 가능한 결과물을 만든 사례로 제시합니다.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="video-shell">
+          <div class="video-frame">
+            <video controls preload="metadata" playsinline muted>
+              <source src="codex_job_collector_demo.mp4" type="video/mp4" />
+              브라우저가 동영상 재생을 지원하지 않습니다.
+            </video>
+            <div class="video-caption">
+              <span>Codex-assisted project demo</span>
+              <span>Job posting collector · 11s</span>
+            </div>
           </div>
         </div>
       </article>
